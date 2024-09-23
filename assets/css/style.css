@@ -141,20 +141,6 @@ main {
   border-top: 1px solid #3a3a3a;
   margin: 5px 0;
 }
-/* Footer */
-#social-networks {
-  text-align: center;
-  padding: 20px 0;
-  display: flex;
-  justify-content: space-evenly;
-  list-style-type: none;
-}
-
-#social-networks a {
-  font-size: 160%;
-  padding: 5%;
-  color: #3a3a3a;
-}
 
 #cicle-cover-bg {
   background: url("../images/reasons-image.webp") no-repeat center/cover;
@@ -171,6 +157,45 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#times {
+  background: url("../images/dublin-city.webp") no-repeat center/cover;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+#times div {
+  color: #fafafa;
+  background-color: rgba(0, 0, 0, .6);
+  padding: 15px;
+  /* Flexbox properties for screens less than 400px wide */
+  flex-basis: 200px;
+  flex-grow: 1;
+  /* Add grid to meetup time divs over bg img */
+  border: 2px solid white
+}
+
+#times h3 {
+  /* Override the general h3 styles */
+  color: #fafafa;
+}
+
+/* Footer */
+#social-networks {
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+}
+
+#social-networks a {
+  font-size: 160%;
+  padding: 5%;
+  color: #3a3a3a;
 }
 
 /* Media queries: tablets and larger devices (768px and up) */
