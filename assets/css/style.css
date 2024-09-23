@@ -57,6 +57,10 @@ h1 {
   color: #25252525;
 }
 
+h1#logo {
+  color: #3a3a3a;
+}
+
 /* Navbar styles with dropdown toggle */
 nav {
   position: absolute;
