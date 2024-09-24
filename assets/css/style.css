@@ -67,36 +67,74 @@ nav {
     position: absolute;
     background-color: #ffffff;
     width: 100%;
+    left: 0;
     padding: 0 1rem;
     box-shadow: 0 2px 2px #3a3a3a;
-    left: 0;
-    right: auto;
-    text-align: left;
     display: none;
     top: 100%;
-    transition: max-height 0.3s ease-out;
-    max-height: 0; 
-    overflow: hidden; 
 }
-  
+
+/* Nav toggle */
 #nav-toggle:checked ~ nav {
     display: block;
-    max-height: 500px; 
 }
-  /* Nav toggle */
-  #nav-toggle {
+
+#nav-toggle {
     display: none;
-  }
-  
-  .nav-toggle-label {
+}
+
+.nav-toggle-label {
     font-size: 2rem;
-    cursor: pointer;
-    transition: transform 0.3s ease-out; 
-  }
-  
-  #nav-toggle:checked + .nav-toggle-label {
-    transform: rotate(180deg); 
-  }
+}
+
+/* Media query: tablets and larger (768px and up) */
+@media screen and (min-width: 768px) {
+    /* Header */
+    nav {
+        display: block;
+        position: relative;
+        box-shadow: none;
+        width: fit-content;
+        padding-right: 1rem;
+    }
+
+    #menu {
+        display: flex;
+    }
+
+    #menu > li {
+        padding-left: 1rem;
+    }
+
+    .nav-toggle-label {
+        display: none;
+    }
+
+    #logo {
+        font-size: 280%;
+        line-height: 75px;
+        margin: 0 0.5rem;
+    }
+
+    /* Main content */
+    main {
+        /* Push main content down to accommodate larger header */
+        margin-top: 79px;
+    }
+
+    /* Hero image */
+    #cover-text {
+        width: 300px;
+        right: 50px;
+    }
+}
+
+/* Large devices (laptops and desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+    #menu a:hover {
+        border-bottom: 1px solid #3a3a3a;
+    }
+}
 
   /* Keyframes for icon flip */
 @keyframes flip {
@@ -204,17 +242,31 @@ main {
 #times h3 {
   color: #fafafa;
 }
-
-/* Gallery */
-#photos img {
-  width: 100%;
-  line-height: 1em;
-}
-
+/* Gallery page */
 #photos {
-  line-height: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px;
+  justify-content: space-around;
+  padding: 0px;
+  width: 100%;
 }
 
+#photos img {
+  flex: 1 1 auto; /* Allow images to grow and shrink as needed */
+  max-width: 100%; /* Ensure images don't exceed their container width */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 600px;
+  gap: 0;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#photos img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 /* Signup section */
 main {
     display: flex;
@@ -228,6 +280,10 @@ main {
 
 #signup h2 {
     color: #fafafa;
+}
+/* Add padding to FontAwesome icons within the form heading */
+#signup h2 .fa-user-plus {
+  padding-right: 10px; /* Add right padding for spacing */
 }
 
 #signup form {
@@ -254,23 +310,45 @@ main {
 
 /* Radio buttons container */
 .radio-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+  width: fit-content;
+  border: 1px solid #fafafa;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+/* Hide radio inputs */
+.radio-buttons input {
+  display: none;
 }
 
 /* Radio buttons label */
 .radio-buttons label {
-    margin: 0;
-    font-size: 1.2em;
+  font-family: "Lato", sans-serif;
+  padding: 10px 20px;
+  border-right: 1px solid #fafafa;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #fafafa;
+  margin: 0; /* Ensure no margin */
 }
 
-/* Radio buttons input */
-.radio-buttons input[type="radio"] {
-    margin: 0;
-    width: 20px;
-    height: 20px;
+/* Remove border for the last label */
+.radio-buttons label:last-of-type {
+  border-right: 0;
+}
+
+/* Hover effect for labels */
+.radio-buttons label:hover {
+  background: rgba(186, 186, 186, 0.6);
+}
+
+/* Checked state for radio buttons */
+.radio-buttons input:checked + label {
+  background: #f16d6b;
+  color: #ffffff;
 }
 
 /* Join button */
@@ -298,38 +376,19 @@ main {
 
 /* Media queries: tablets and larger devices (768px and up) */
 @media screen and (min-width: 768px) {
-    #signup {
-        background-position: center;
-    }
+  #signup {
+    background-position: center;
+  }
 
-    #signup form {
-        padding: 40px 20%;
-        margin: 50px auto;
-        max-width: 600px;
-    }
-
-    #first_name,
-    #last_name,
-    #email_address {
-        height: 50px;
-        margin-top: 15px;
-        margin-bottom: 25px;
-        padding: 0 15px;
-    }
-
-    .radio-buttons label {
-        font-size: 1.4em;
-    }
-
-    .radio-buttons input[type="radio"] {
-        width: 25px;
-        height: 25px;
-    }
-
-    .join-button {
-        padding: 15px 30px;
-        font-size: 1.4em;
-    }
+  #signup form {
+    padding: 10px;
+    margin: 150px auto auto 50px;
+    max-width: 400px;
+  }
+  .join-button {
+    padding: 15px 30px;
+    font-size: 1.4em;
+  }
 }
 /* Footer */
 #social-networks {
@@ -350,7 +409,7 @@ main {
 @media screen and (min-width: 768px) {
   /* Header */
   nav {
-    display: block;
+    display: flex;
     position: relative;
     box-shadow: none;
     width: fit-content;
